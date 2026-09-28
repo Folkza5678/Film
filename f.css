@@ -35,8 +35,8 @@ body {
 #floaters { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 .float { position: fixed; opacity: .6; animation: drift linear infinite; }
 @keyframes drift {
-  0% { transform: translateY(110vh) rotate(0deg); }
-  100% { transform: translateY(-10vh) rotate(360deg); }
+  0%   { transform: translateY(100vh) rotate(0deg); }
+  100% { transform: translateY(calc(-100% - 40px)) rotate(360deg); }
 }
 .float-photo {
   position: fixed; border-radius: 50%; overflow: hidden; border: 3px solid #fff;
@@ -332,9 +332,11 @@ p.body { font-family: 'Kanit', sans-serif; font-weight: 300; font-size: 15.5px; 
   animation: shine 3.5s ease-in-out infinite;
 }
 
-/* ไอคอนของขวัญเต้นตุบๆ ต่อท้าย */
+/* ไอคอนของขวัญเต้นตุบๆ ต่อท้าย */ุ
 .gift-inner > p.body::after {
   margin-left: 8px;
   display: inline-block;
   animation: pulse 1.4s ease-in-out infinite;
 }
+/* ให้ของที่ลอยรออยู่ใต้จอระหว่าง delay ไม่ไปค้างที่ขอบบน */
+.float, .float-photo { animation-fill-mode: backwards; }

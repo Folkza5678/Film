@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="f.css">
 </head>
 <body>
-
+  <audio id="bgm" src="Dept - ที่ข้างๆฉัน _ Bolster [Music Video].mp3" loop preload="auto"></audio>
+  <audio id="wishSong" src="ของขวัญ.mp3" loop preload="auto"></audio>
   <!-- decorative floating background (hearts / sparkles) -->
   <div id="floaters"></div>
   <div class="blobs">
@@ -127,7 +128,7 @@
           <h2>🎵 เพลงของเรา</h2>
               <div class="yt-wrap">
   <iframe 
-    src="https://www.youtube.com/embed/pbKuSJo2eNo?start=60" 
+    src="https://www.youtube.com/embed/pbKuSJo2eNo?start=60&enablejsapi=1"
     title="เพลงของเรา" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
     referrerpolicy="strict-origin-when-cross-origin"
@@ -210,8 +211,63 @@
   </div>
 
   <script>
+/* ---------- background music ---------- */
+const bgm = document.getElementById('bgm');
+const wishSong = document.getElementById('wishSong');
+const MUSIC_VOL = 0.4;            // ความดังสูงสุด 0-1
+let activeAudio = bgm;            // เพลงที่ควรเล่นอยู่ตอนนี้
+let musicStarted = false;
+const fadeTimers = new Map();
+
+function fade(audio, target, ms){
+  clearInterval(fadeTimers.get(audio));
+  if(target > 0 && audio.paused) audio.play().catch(() => {});
+  const step = 50, from = audio.volume, diff = target - from;
+  let t = 0;
+  const id = setInterval(() => {
+    t += step;
+    const p = Math.min(t / ms, 1);
+    audio.volume = Math.max(0, Math.min(1, from + diff * p));
+    if(p >= 1){
+      clearInterval(id);
+      if(target === 0) audio.pause();
+    }
+  }, step);
+  fadeTimers.set(audio, id);
+}
+
+function startMusic(){
+  musicStarted = true;
+  bgm.volume = 0;
+  fade(bgm, MUSIC_VOL, 3000);
+}
+
+function pauseYouTube(){
+  const f = document.querySelector('.yt-wrap iframe');
+  if(f && f.contentWindow){
+    f.contentWindow.postMessage(JSON.stringify({event:'command', func:'pauseVideo', args:''}), '*');
+  }
+}
+
+function updateMusic(){
+  if(!musicStarted) return;
+  const songIndex = [...document.querySelectorAll('#track .slide')].findIndex(s => s.querySelector('.yt-wrap'));
+  const onSong = current === songIndex;
+  if(!onSong) pauseYouTube();
+  fade(activeAudio, onSong ? 0 : MUSIC_VOL, 2500);
+}
+
+function switchToWishSong(){
+  if(!musicStarted) return;
+  fade(bgm, 0, 2000);
+  wishSong.volume = 0;
+  activeAudio = wishSong;
+  fade(wishSong, MUSIC_VOL, 2500);
+}
+
     /* ---------- gift box ---------- */
     function openGift(){
+      startMusic();
       document.getElementById('giftBox').classList.add('opened');
       document.getElementById('openGiftBtn').style.display = 'none';
       setTimeout(() => {
@@ -254,6 +310,7 @@
     function goTo(i) {
       if (i < 0 || i >= total) return;
       current = i;
+      updateMusic();
       document.querySelectorAll('.slide').forEach((s, idx) => s.classList.toggle('on', idx === current));
       track.style.transform = `translateX(-${current * 100}vw)`;
       document.querySelectorAll('.dot').forEach((d, idx) => d.classList.toggle('active', idx === current));
@@ -277,6 +334,7 @@
     });
 
     function revealWish() {
+      switchToWishSong();
       document.getElementById('wishBox').classList.add('show');
       document.getElementById('wishBtn').style.display = 'none';
     }
@@ -311,7 +369,6 @@
 
     for(let i=0;i<totalFloaters;i++){
       const isPhoto = i % 3 === 2;
-
       if(isPhoto){
         const size = 70 + Math.random()*50;
         const el = document.createElement('div');
@@ -321,7 +378,6 @@
         el.style.left = Math.random()*100+'vw';
         el.style.animationDuration = (16+Math.random()*16)+'s';
         el.style.animationDelay = (Math.random()*14)+'s';
-
         const src = bgPhotos[Math.floor(Math.random()*bgPhotos.length)] || '';
         el.innerHTML = src
           ? `<img src="${src}" alt="รูปความทรงจำ">`
