@@ -334,9 +334,42 @@ p.body { font-family: 'Kanit', sans-serif; font-weight: 300; font-size: 15.5px; 
 
 /* ไอคอนของขวัญเต้นตุบๆ ต่อท้าย */ุ
 .gift-inner > p.body::after {
+  content: "🎁";
   margin-left: 8px;
   display: inline-block;
   animation: pulse 1.4s ease-in-out infinite;
 }
 /* ให้ของที่ลอยรออยู่ใต้จอระหว่าง delay ไม่ไปค้างที่ขอบบน */
 .float, .float-photo { animation-fill-mode: backwards; }
+
+/* ---------- collage รูปภาพ ---------- */
+.collage {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  height: clamp(210px, 40vh, 340px);
+  margin: 14px 0 16px;
+}
+.ph {
+  position: relative; overflow: hidden; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 16px; font-size: 22px; color: var(--sub);
+  border: 2px dashed rgba(30,62,98,.3);
+  background: rgba(255,255,255,.5);
+  box-shadow: 0 6px 16px var(--shadow);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.ph:nth-child(1) { grid-row: 1 / span 2; transform: rotate(-1.5deg); }
+.ph:nth-child(2) { transform: rotate(1.5deg); }
+.ph:nth-child(3) { transform: rotate(-1deg); }
+.ph:hover { transform: rotate(0) scale(1.03); z-index: 2; box-shadow: 0 14px 28px rgba(15,44,89,.28); }
+.ph img { width: 100%; height: 100%; object-fit: cover; display: none; }
+.ph img[src]:not([src=""]) { display: block; }
+.ph:has(img[src]:not([src=""])) { border: 5px solid #fff; border-bottom-width: 14px; background: #fff; }
+.ph:has(img[src]:not([src=""])) .slot-text { display: none; }
+
+/* แบบ 2 รูปคู่ (ใส่ class="collage two") */
+.collage.two { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+.collage.two .ph:nth-child(1) { grid-row: auto; }
