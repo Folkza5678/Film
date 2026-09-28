@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Happy Birthday to Auan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="f.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
 
       <div class="gift-box" id="giftBox">
         <div class="gift-base">
-          <svg width="130" height="130" viewBox="0 0 396 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="170" height="170" viewBox="0 0 396 396" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M197.381 187.481V383.625C197.381 383.625 278.438 326.7 335.363 309.994C335.363 309.994 337.838 188.719 373.106 128.081L197.381 187.481Z" fill="#D5E5F5"/>
 <path d="M248.119 353.925C248.119 353.925 251.212 180.056 257.4 171.394C263.587 162.113 316.8 152.831 316.8 152.831C316.8 152.831 295.144 315.563 300.094 326.081C300.712 325.463 278.437 334.744 248.119 353.925Z" fill="#152F87"/>
 <path d="M197.381 383.625C197.381 383.625 140.456 335.363 51.9749 309.994C51.9749 309.994 58.7812 210.375 26.6062 134.269L197.381 187.481V383.625Z" fill="#F4F9FF"/>
@@ -45,10 +45,9 @@
 <path d="M201.712 126.844C201.712 126.844 232.65 129.319 261.731 121.894C322.369 106.425 299.475 60.6375 243.169 79.8187C196.144 95.9062 201.712 126.844 201.712 126.844Z" fill="#0F2A83"/>
 </svg>
         </div>
-        <!-- ใส่รูปเซอร์ไพรส์ของคุณตรงนี้: เปลี่ยน src="" -->
+        <!-- รูปเซอร์ไพรส์ที่พุ่งออกจากกล่อง -->
         <div class="gift-photo">
-          <img src="" alt="รูปเซอร์ไพรส์">
-          <span class="slot-text" id="giftSlotText">📷 ใส่รูปตรงนี้</span>
+          <img src="S__33275914.jpg" alt="รูปเซอร์ไพรส์">
         </div>
       </div>
 
@@ -56,16 +55,39 @@
     </div>
   </div>
 
-  <!-- ============ SCREEN 2: PASSWORD LOCK ============ -->
-  <div id="passModal" class="pass-modal">
-    <div class="pass-card">
-      <p class="eyebrow">Password</p>
-      <p class="body">ใบ้ว่าวันที่คบกัน  ิ ิ (รหัส 6 หลัก )</p>
-      <input type="tel" id="passInput" maxlength="8" placeholder="• • • • • •" inputmode="numeric" autocomplete="off">
-      <button class="start-btn" onclick="checkPassword()">Confirm</button>
-      <p id="passError" class="pass-error"></p>
+ <!-- ============ SCREEN 2: PASSWORD LOCK ============ -->
+<div id="passModal" class="pass-modal">
+  <div class="pass-card">
+    <!-- ไอคอนตกแต่งด้านบน -->
+    <div class="pass-icon-wrapper">
+      <span class="pass-icon">🔒</span>
     </div>
+
+    <p class="eyebrow">PASSWORD LOCK</p>
+    <h3 class="pass-title">กรอกรหัสผ่านครับที่รัก</h3>
+    <p class="body">คำใบ้ : วันที่คบกัน ♾️ <span class="hint-sub">(รหัส 6 หลัก)</span></p>
+
+    <div class="input-container">
+      <input 
+        type="tel" 
+        id="passInput" 
+        maxlength="6" 
+        placeholder="• • • • • •" 
+        inputmode="numeric" 
+        autocomplete="off"
+      >
+    </div>
+
+    <button class="start-btn" onclick="checkPassword()">
+      <span>Confirm</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+    
+    <p id="passError" class="pass-error"></p>
   </div>
+</div>
 
   <!-- ============ MAIN SITE ============ -->
   <div id="mainSite">
@@ -75,10 +97,10 @@
       <section class="slide">
         <div class="inner">
           <p class="eyebrow">FOR FILM</p>
-          <h1>สุขสันต์วันเกิด ฟิล์ม <span class="heart">💙</span></h1>
-          <p class="body" id="togetherText">เราคบกันมาแล้ว...</p>
+          <h1>Happy Birthday 2 U Kub Nong'Film <span class="heart">💙</span></h1>
+          <p class="body" id="togetherText">เราคบกันมา...</p>
           <div class="countdown" id="counter"></div>
-          <button class="start-btn" onclick="goTo(1)">เริ่มเลื่อนดูความทรงจำ →</button>
+          <button class="start-btn" onclick="goTo(1)">กดตรงนี้เลยจั๊ฟฟ</button>
         </div>
       </section>
 
@@ -87,7 +109,6 @@
         <div class="inner">
           <p class="eyebrow">Memory 01</p>
           <h2>💬 ครั้งแรกที่ทักไปจีบ</h2>
-          <!-- ใส่รูปของคุณตรงนี้ -->
           <div class="img-slot lightbox-trigger">
             <img src="" alt="ครั้งแรกที่ทักไปจีบ"><span class="slot-text">📷 ใส่รูปตรงนี้</span>
           </div>
@@ -104,13 +125,15 @@
         <div class="inner">
           <p class="eyebrow">Our Song</p>
           <h2>🎵 เพลงของเรา</h2>
-          <!-- เปลี่ยน VIDEO_ID ในลิงก์ด้านล่างเป็นวิดีโอเพลงของคุณ เช่น https://www.youtube.com/embed/dQw4w9WgXcQ -->
-          <div class="yt-wrap">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-              title="เพลงของเรา" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-          </div>
+              <div class="yt-wrap">
+  <iframe 
+    src="https://www.youtube.com/embed/pbKuSJo2eNo?start=60" 
+    title="เพลงของเรา" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
           <p class="body">เพลงนี้แหละที่ทำให้นึกถึงเธอทุกครั้งที่ได้ยิน 💙</p>
         </div>
       </section>
@@ -207,7 +230,7 @@
         document.getElementById('mainSite').classList.add('show');
         goTo(0);
       } else {
-        document.getElementById('passError').textContent = 'รหัสไม่ถูกต้อง ลองใหม่นะ 💭';
+        document.getElementById('passError').textContent = 'จำวันครบรอบไม่ได้หรอ 😾';
         card.classList.add('shake');
         setTimeout(()=>card.classList.remove('shake'), 500);
       }
@@ -231,6 +254,7 @@
     function goTo(i) {
       if (i < 0 || i >= total) return;
       current = i;
+      document.querySelectorAll('.slide').forEach((s, idx) => s.classList.toggle('on', idx === current));
       track.style.transform = `translateX(-${current * 100}vw)`;
       document.querySelectorAll('.dot').forEach((d, idx) => d.classList.toggle('active', idx === current));
       document.getElementById('prevBtn').classList.toggle('hidden', current === 0);
@@ -279,19 +303,17 @@
       }
     }
 
-    /* ---------- floating decorative background: emojis + photo bubbles mixed ---------- */
+    /* ---------- floating decorative background ---------- */
     const emojis = ['🩵','🫧','🌀','🤍','❄️'];
-    // ใส่ path รูปของคุณในนี้ (เว้นว่างไว้ได้ ถ้ายังไม่มีรูปจะโชว์ไอคอนกรอบแทน)
-    // เช่น const bgPhotos = ['images/us1.jpg', 'images/us2.jpg', 'images/us3.jpg'];
-    const bgPhotos = ['', '', '', ''];
+    const bgPhotos = ['S__33275914.jpg', 'S__33275916.jpg', 'S__33275920.jpg'];
     const floaterWrap = document.getElementById('floaters');
     const totalFloaters = 20;
 
     for(let i=0;i<totalFloaters;i++){
-      const isPhoto = i % 3 === 2; // ประมาณ 1 ใน 3 เป็นรูป ที่เหลือเป็นอีโมจิ
+      const isPhoto = i % 3 === 2;
 
       if(isPhoto){
-        const size = 44 + Math.random()*36; // 44–80px
+        const size = 70 + Math.random()*50;
         const el = document.createElement('div');
         el.className = 'float-photo';
         el.style.width = size+'px';
@@ -318,7 +340,7 @@
     }
 
     /* ---------- count-up since we got together ---------- */
-    const startDate = new Date(2025, 0, 10, 10, 0, 0); // 10 มกราคม 2568 (2025) เวลา 10:00
+    const startDate = new Date(2025, 0, 10, 10, 0, 0);
 
     function ymdBreakdown(start, now){
       let y = now.getFullYear() - start.getFullYear();
@@ -348,7 +370,7 @@
       const s = Math.floor((diff/1000)%60);
       const {y, m:mm, d} = ymdBreakdown(startDate, now);
 
-      textEl.textContent = `เราคบกันมาแล้ว ${y} ปี ${mm} เดือน ${d} วัน 💙`;
+      textEl.textContent = `เราคบกันมาแล้ว ${y} ปี ${mm} เดือน ${d} วัน แล้วนะอ้วนนนฮิฮิ`;
       el.innerHTML =
         `<div class="cbox"><b>${totalDays}</b><span>วันทั้งหมด</span></div>` +
         `<div class="cbox"><b>${h}</b><span>ชม.</span></div>` +
